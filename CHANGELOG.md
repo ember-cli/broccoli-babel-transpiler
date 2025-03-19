@@ -2,6 +2,16 @@
 
 
 
+
+## v8.0.1 (2025-03-19)
+
+#### :bug: Bug Fix
+* [#239](https://github.com/babel/broccoli-babel-transpiler/pull/239) Support async babel plugins ([@ef4](https://github.com/ef4))
+
+#### Committers: 1
+- Edward Faulkner ([@ef4](https://github.com/ef4))
+
+
 ## v8.0.0 (2023-08-17)
 
 #### :boom: Breaking Change
