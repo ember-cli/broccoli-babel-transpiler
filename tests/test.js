@@ -309,6 +309,27 @@ describe('transpile ES6 to ES5', function() {
     });
   });
 
+  it('supports async babel plugins (non-parallel implementation)', function () {
+    return babel('files', {
+      babel: {
+        inputSourceMap: false,
+        sourceMap: false,
+        plugins: [
+          '@babel/transform-strict-mode',
+          '@babel/transform-block-scoping',
+          async function() { return { visitor: {} }}
+        ]
+      }
+    }).then(results => {
+      let outputPath = results.directory;
+
+      let output = fs.readFileSync(path.join(outputPath, 'fixtures.js'), 'utf8');
+      let input = fs.readFileSync(path.join(expectations, 'expected.js'), 'utf8');
+
+      expect(output).to.eql(input);
+    });
+  });
+
   it('basic - parallel API', function () {
     return babel('files', {
       babel: {
@@ -1576,5 +1597,12 @@ describe('workerpool', function() {
         pool.workers.forEach(worker => expect(worker.worker.isChildProcess).to.eql(true));
       }
     });
+  });
+
+  it("supports async babel plugins (parallel implementation)", async function () {
+    // a plugin whose factory is async is enough to exercise the behavior. Babel
+    // will throw if you use `transform` as opposed to `transformAsync`.
+    options.babel.plugins.push(require.resolve('./utils/parallel-plugin'));
+    await ParallelApi.transformString(stringToTransform, options)
   });
 });
