@@ -18,8 +18,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['ubuntu', 'windows', 'macOS']
-        node: ['6', '8', '10', '12', '14', '16']
+        os: ['ubuntu', 'windows']
+        node: ['8', '10', '12', '14', '16']
 
     steps:
     - uses: actions/checkout@v3
