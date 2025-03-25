@@ -16,6 +16,7 @@ jobs:
     runs-on: "${{matrix.os}}-latest"
 
     strategy:
+      fail-fast: false
       matrix:
         os: ['ubuntu', 'windows', 'macOS']
         node: ['6', '8', '10', '12', '14', '16']
