@@ -285,21 +285,27 @@ describe('transpile ES6 to ES5', function() {
   });
 
   it('supports async babel plugins (non-parallel implementation)', function () {
-    return babel('files', {
-      babel: {
-        inputSourceMap: false,
-        sourceMap: false,
-        plugins: [
-          '@babel/transform-strict-mode',
-          '@babel/transform-block-scoping',
-          async function() { return { visitor: {} }}
-        ]
-      }
-    }).then(results => {
+    return babel("files", {
+      inputSourceMap: false,
+      sourceMap: false,
+      plugins: [
+        "@babel/transform-strict-mode",
+        "@babel/transform-block-scoping",
+        async function () {
+          return { visitor: {} };
+        },
+      ],
+    }).then((results) => {
       let outputPath = results.directory;
 
-      let output = fs.readFileSync(path.join(outputPath, 'fixtures.js'), 'utf8');
-      let input = fs.readFileSync(path.join(expectations, 'expected.js'), 'utf8');
+      let output = fs.readFileSync(
+        path.join(outputPath, "fixtures.js"),
+        "utf8"
+      );
+      let input = fs.readFileSync(
+        path.join(expectations, "expected.js"),
+        "utf8"
+      );
 
       expect(output).to.eql(input);
     });
