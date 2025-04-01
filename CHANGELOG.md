@@ -3,6 +3,16 @@
 
 
 
+
+## v8.0.2 (2025-04-01)
+
+#### :bug: Bug Fix
+* [#241](https://github.com/ember-cli/broccoli-babel-transpiler/pull/241) Separate async workpool from earlier sync ones ([@ef4](https://github.com/ef4))
+
+#### Committers: 1
+- Edward Faulkner ([@ef4](https://github.com/ef4))
+
+
 ## v8.0.1 (2025-03-19)
 
 #### :bug: Bug Fix
